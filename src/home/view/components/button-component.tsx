@@ -1,35 +1,19 @@
-import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import React from "react";
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-  }),
-);
+interface ButtonProps {
+  type: "button" | "submit" | "reset";
+  onClick?: () => void;
+  children: React.ReactNode;
+}
 
-export default function ContainedButtons() {
-  const classes = useStyles();
+export default class ButtonComponent extends React.Component<ButtonProps> {
+  render() {
+    const { type, onClick, children } = this.props;
 
-  return (
-    <div className={classes.root}>
-      <Button variant="contained">Default</Button>
-      <Button variant="contained" color="primary">
-        Primary
-      </Button>
-      <Button variant="contained" color="secondary">
-        Secondary
-      </Button>
-      <Button variant="contained" disabled>
-        Disabled
-      </Button>
-      <Button variant="contained" color="primary" href="#contained-buttons">
-        Link
-      </Button>
-    </div>
-  );
+    return (
+      <button className="btn btn-danger" type={type} onClick={onClick}>
+        {children}
+      </button>
+    );
+  }
 }
